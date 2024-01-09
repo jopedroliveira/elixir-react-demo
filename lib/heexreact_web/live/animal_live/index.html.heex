@@ -1,0 +1,42 @@
+<.header>
+  Listing Animal
+  <:actions>
+    <.link patch={~p"/animal/new"}>
+      <.button>New Animal</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="animal" rows={@streams.animal_collection} row_click={fn {_id, animal} -> JS.navigate(~p"/animal/#{animal}")
+  end}
+  >
+  <:col :let={{_id, animal}} label="Common name">
+    <%= animal.common_name %>
+  </:col>
+  <:col :let={{_id, animal}} label="Species">
+    <%= animal.species %>
+  </:col>
+  <:col :let={{_id, animal}} label="Region">
+    <%= animal.region %>
+  </:col>
+  <:action :let={{_id, animal}}>
+    <div class="sr-only">
+      <.link navigate={~p"/animal/#{animal}"}>Show</.link>
+    </div>
+    <.link patch={~p"/animal/#{animal}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, animal}}>
+    <.link phx-click={JS.push("delete", value: %{id: animal.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+      >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<div id="greetings" data-name="Pedro" phx-update="ignore" />
+
+<.modal :if={@live_action in [:new, :edit]} id="animal-modal" show on_cancel={JS.patch(~p"/animal")}>
+  <.live_component module={HeexreactWeb.AnimalLive.FormComponent} id={@animal.id || :new} title={@page_title}
+    action={@live_action} animal={@animal} patch={~p"/animal"} />
+</.modal>

@@ -1,0 +1,28 @@
+<.header>
+  Animal <%= @animal.id %>
+  <:subtitle>This is a animal record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/animal/#{@animal}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit animal</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Common name"><%= @animal.common_name %></:item>
+  <:item title="Species"><%= @animal.species %></:item>
+  <:item title="Region"><%= @animal.region %></:item>
+</.list>
+
+<.back navigate={~p"/animal"}>Back to animal</.back>
+
+<.modal :if={@live_action == :edit} id="animal-modal" show on_cancel={JS.patch(~p"/animal/#{@animal}")}>
+  <.live_component
+    module={HeexreactWeb.AnimalLive.FormComponent}
+    id={@animal.id}
+    title={@page_title}
+    action={@live_action}
+    animal={@animal}
+    patch={~p"/animal/#{@animal}"}
+  />
+</.modal>
