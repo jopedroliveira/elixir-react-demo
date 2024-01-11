@@ -6,8 +6,8 @@ const GreeterHook = {
   mounted() {
     const hook = this;
 
-    const greeting = this.el as Element;
-    const root = ReactDOM.createRoot(greeting);
+    const element = this.el as Element;
+    const root = ReactDOM.createRoot(element);
     root.render(<Greeter />);
   },
 } as any;
