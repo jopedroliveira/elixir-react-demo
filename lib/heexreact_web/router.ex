@@ -18,9 +18,9 @@ defmodule HeexreactWeb.Router do
   scope "/", HeexreactWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    # get "/", PageController, :home
 
-    scope "/animals" do
+    scope "/" do
       live_session :animal,
         on_mount: [] do
         live "/", AnimalLive.Index, :index

@@ -1,15 +1,11 @@
 import React from 'react';
 
-interface GreeterProps {
-  name: string;
-}
-
-const Greeter: React.FC<GreeterProps> = ({ name }) => {
+function Greeter() {
   const [count, setCount] = React.useState(0);
 
   return (
     <div className="my-2 p-4 bg-yellow-100 rounded-lg space-y-3 space-x-2">
-      <h1>Welcome, {name}!</h1>
+      <h1>Welcome!</h1>
       <h3>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel
         lacinia leo. Proin nec ullamcorper risus. Nulla scelerisque porttitor
@@ -31,6 +27,6 @@ const Greeter: React.FC<GreeterProps> = ({ name }) => {
       </button>
     </div>
   );
-};
+}
 
 export default Greeter;
