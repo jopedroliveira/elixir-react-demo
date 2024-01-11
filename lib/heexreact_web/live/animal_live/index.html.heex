@@ -34,9 +34,6 @@
   </:action>
 </.table>
 
-<div id="greetings" phx-hook="Greeter" data-name="Pedro" />
-<%!-- <div id="greetings" phx-hook="Greeter" data-name="Pedro" phx-update="ignore" /> --%>
-
 <.modal :if={@live_action in [:new, :edit]} id="animal-modal" show on_cancel={JS.patch(~p"/animal")}>
   <.live_component module={HeexreactWeb.AnimalLive.FormComponent} id={@animal.id || :new} title={@page_title}
     action={@live_action} animal={@animal} patch={~p"/animal"} />

@@ -5,10 +5,14 @@ import Greeter from './greeter';
 const GreeterHook = {
   mounted() {
     const hook = this;
-
     const element = this.el as Element;
+
+    const onClick = (increment: number) => {
+      hook.pushEventTo(`#${element.id}`, 'increment', { increment });
+    };
+
     const root = ReactDOM.createRoot(element);
-    root.render(<Greeter />);
+    root.render(<Greeter onClick={onClick} />);
   },
 } as any;
 

@@ -30,6 +30,7 @@ defmodule HeexreactWeb.AnimalLive.Index do
     socket
     |> assign(:page_title, "Listing Animal")
     |> assign(:animal, nil)
+    |> assign(:count, 0)
   end
 
   @impl true
